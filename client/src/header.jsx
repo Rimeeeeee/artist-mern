@@ -4,19 +4,19 @@ import { UserContext } from './UserContext.jsx';
 export default function Header(){
   const {user}=useContext(UserContext);
       return(
-        <header className=" flex justify-between">
+        <header className=" flex justify-between bg-sky-700 text-white rounded-lg">
       <Link to={'/'} className="flex items-center gap-1">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 -rotate-90">
   <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
 </svg>
-<span className="font-bold text-xl">artisan</span>
+<span className="font-bold text-xl">Artisan</span>
       </Link>
-      <div className="flex  gap-2 border border-grey-300 rounded-full py-2 px-4 shadow-md shadow-gray-300">
-        <div>Anywhere</div>
+      <div className="flex  gap-2 border border-grey-300 rounded-full py-4 px-4 shadow-md shadow-gray-300">
+        <div>My Profile</div>
         <div className="border-l border-gray-300"></div>
-        <div>Any Place</div>
+        <div>My Orders</div>
         <div className="border-l border-gray-300"></div>
-        <div>Add Guest</div>
+        <div>My Products</div>
         <button className="bg-primary text-white p-1 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
   <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -24,7 +24,7 @@ export default function Header(){
 
         </button>
       </div>
-      <Link to={user?'/account':'/login'}className="flex items-center  gap-2 border border-grey-300 rounded-full py-2 px-4">
+      <Link to={user?'/account':'/login'}className="flex items-center  gap-2 rounded-full py-4 px-4">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
 </svg>
