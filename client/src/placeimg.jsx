@@ -4,7 +4,8 @@ export default function PlaceImg({place,index=0}){
     }
     return(
         
-            <img className='object-cover'src={'http://localhost:4000/uploads/'+place.photos[index]} alt=""/>
+         <img className='object-cover'src={'http://localhost:4000/uploads/'+place.photos[index]} alt=""/>
         
+  
     );
 }

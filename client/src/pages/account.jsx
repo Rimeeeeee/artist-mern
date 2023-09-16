@@ -35,7 +35,7 @@ export default function AccountPage(){
             {subpage==='profile'&&(
                 <div className='text-center max-w-lg mx-auto'>
                     Logged in as {user.name} ({user.email})<br/>
-                    <button onClick={logout} className="bg-primary text-white p-2 w-full mt-2 text-white rounded-2xl">Logout</button>
+                    <button onClick={logout} className=" text-white p-2 w-full mt-2 rounded-2xl bg-indigo-700 hover:bg-indigo-500 active:bg-indigo-300">Logout</button>
                     </div>
             )}
             {subpage==='places'&&(
