@@ -167,8 +167,8 @@ function getUserDataFromReq(req){
 }
 app.post('/orders',async(req,res)=>{
     const userData=await getUserDataFromReq(req);
-    const{product,sender,reciever,items,price}=req.body;
-    Order.create({product,sender,reciever,items,price,user:userData.id}).then((doc)=>{
+    const{product,home_address,contact_no,items,price}=req.body;
+    Order.create({product,home_address,contact_no,items,price,user:userData.id}).then((doc)=>{
        
         res.json(doc);
     }).catch((err)=>{

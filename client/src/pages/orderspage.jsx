@@ -24,10 +24,10 @@ export default function OrdersPage(){
                         <PlaceImg place={order.place}/>
                     </div>
                     <div>
-                    From :{order.sender}  
+                    From :{order.home_address}  
                     </div>
                     <div>
-                    To:{order.reciever}
+                    To:{order.contact_no}
                     
                     </div>
                     <div>
