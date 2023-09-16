@@ -13,10 +13,11 @@ export default function AccountNav(){
         return classes;
     }
     return(
-        <nav className="w-full flex  justify-center mt-8 gap-2 mb-8">
-            <Link className={linkClasses('profile')} to={'/account'}>My Profile</Link>
-                <Link className={linkClasses('orders')} to={'/account/orders'}>My Orders</Link>
-                <Link className={linkClasses('products')} to={'/account/products'}>My Products</Link>
+        <nav className="flex justify-center m-2 gap-2">
+            <div className="px-2 border-r border-gray-300"><Link className={linkClasses('products')} to={'/'}>Home</Link></div>
+            <div className="px-2 border-r border-gray-300"><Link className={linkClasses('profile') } to={'/account'}>My Profile</Link></div> 
+           <div className="px-2 border-r border-gray-300"><Link className={linkClasses('orders')} to={'/account/orders'}>My Orders</Link></div>     
+           <div className="px-2 border-r border-gray-300"><Link className={linkClasses('products')} to={'/account/products'}>My Products</Link></div>
             </nav>
     );
 }

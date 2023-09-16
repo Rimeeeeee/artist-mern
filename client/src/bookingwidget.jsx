@@ -37,7 +37,7 @@ export default function BookingWidget({product}){
     </div>
     
      <div className="text-xl">
-     <button onClick={buyThisProduct} className="mt-2 p-2 bg-primary text-white rounded-2xl shadow bg-green-400">
+     <button onClick={buyThisProduct} className="mt-2 p-2 text-white rounded-2xl shadow bg-green-500 hover:bg-green-400 active:bg-green-600">
         Buy This Product
         {items>0 && (
             <span> For ${items*product.price}</span>
