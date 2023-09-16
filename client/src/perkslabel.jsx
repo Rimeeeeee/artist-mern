@@ -16,33 +16,25 @@ export default function Perks({selected,onChange}){
                         <label className='border p-4 flex rounded-2xl gap-2 items-center cursor-pointer'>
                             <input type='checkbox'  checked={selected.includes('wifi')} name='wifi' onChange={handlecbClick}/>
                             <span>
-                            
-
-                            Wifi</span>
+                          An Elegant Addition to Any Outfit</span>
                         </label>
                         <label className='border p-4 flex rounded-2xl gap-2 items-center cursor-pointer'>
                             <input type='checkbox' checked={selected.includes('parking')} name='parking'onChange={handlecbClick}/>
                             
 
-                            <span>Free Parking Space</span>
+                            <span>100% Authentic</span>
                         </label>
                         <label className='border p-4 flex rounded-2xl gap-2 items-center cursor-pointer'>
                             <input type='checkbox' checked={selected.includes('TV')} name='TV'onChange={handlecbClick}/>
                             
 
-                            <span>TV</span>
+                            <span>A Long-Term Sustainable Investment</span>
                         </label>
                         <label className='border p-4 flex rounded-2xl gap-2 items-center cursor-pointer'>
                             <input type='checkbox' checked={selected.includes('pets')} name='pets'onChange={handlecbClick}/>
                             
 
-                            <span>Pets</span>
-                        </label>
-                        <label className='border p-4 flex rounded-2xl gap-2 items-center cursor-pointer'>
-                            <input type='checkbox' checked={selected.includes('pvtentrance')} name='pvtentrance'onChange={handlecbClick}/>
-                            
-
-                            <span>Private Entrance</span>
+                            <span>Unique Design</span>
                         </label>
                         
                     </div>

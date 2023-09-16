@@ -60,19 +60,25 @@ export default function ProductsFormPage(){
                     <h2 className='text-2xl mt-4'>Title</h2>
                     <p className='text-gray-500 text-sm'>Title for your product.</p>
                     <input className='w-full border my-2 py-2 px-3 rounded-2xl' type='text' value={title} onChange={ev=>setTitle(ev.target.value)}placeholder='title, for eg:My lovely apartment'/>
+                    
                     <h2 className='text-2xl mt-4'>Owner Address</h2>
                     <p className='text-gray-500 text-sm'>Address to this place.</p>
                     <input className='w-full border my-2 py-2 px-3 rounded-2xl' type='text'  value={owneraddress} onChange={ev=>setOwnerAddress(ev.target.value)}placeholder='owneraddress'/>
+                    
                     <h2 className='text-2xl mt-4'>Photos</h2>
                     <p className='text-gray-500 text-sm'>more=better</p>
                     <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
+                    
                     <h2 className='text-2xl mt-4'>Description</h2>
                     <p className='text-gray-500 text-sm'>Description of the place</p>
                     <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={description} onChange={ev=>setDescription(ev.target.value)}/>
+                    
                     <Perks selected={perks} onChange={setPerks}/>
+                    
                     <h2 className='text-2xl mt-4'>Catagory</h2>
                     <p className='text-gray-500 text-sm'>House rules..etc</p>
                     <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={catagory} onChange={ev=>setCatagory(ev.target.value)}/>
+                    
                     <h2 className='text-2xl mt-4'>Stock</h2>
                     <p className='text-gray-500 text-sm'>Provide stock.</p>
                     <div className='grid gap-2 sm:grid-cols-3'>
@@ -86,7 +92,7 @@ export default function ProductsFormPage(){
                             <input type='number'  value={price} onChange={ev=>setPrice(ev.target.value)} placeholder='100'/>
                         </div>
                     </div>
-                    <button className="bg-primary p-2 w-full text-white rounded-2xl my-6">Save</button>
+                    <button className="bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-300 px-8 py-2  text-white rounded-full my-6">Save</button>
                 </form>
                 </div>
     )

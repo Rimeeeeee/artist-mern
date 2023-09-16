@@ -19,7 +19,7 @@ export default function OrdersPage(){
                 {orders?.length >0 && orders.map(order=>(
                  <>
                  <Link to={'/account/orders/'+order._id}/>
-                  <div className="bg-primary text-white p-4 rounded-2xl mt-4 flex-justify-center">
+                  <div className="bg-red-500 text-white p-4 rounded-2xl mt-4 flex-justify-center">
                     <div className="flex gap-4 bg-gray-300 ">
                         <PlaceImg place={order.place}/>
                     </div>
