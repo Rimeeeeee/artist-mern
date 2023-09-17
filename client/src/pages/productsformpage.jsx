@@ -1,5 +1,6 @@
 import PhotosUploader from "../photosuploader.jsx";
 import Perks from '../perkslabel.jsx';
+import Catagory from "../catagorylabel.jsx";
 import { useState,useEffect } from "react";
 import { Navigate,useParams } from "react-router-dom";
 import axios from "axios";
@@ -59,32 +60,31 @@ export default function ProductsFormPage(){
                 <form onSubmit={addNewProduct} >
                     <h2 className='text-2xl mt-4'>Title</h2>
                     <p className='text-gray-500 text-sm'>Title for your product.</p>
-                    <input className='w-full border my-2 py-2 px-3 rounded-2xl' type='text' value={title} onChange={ev=>setTitle(ev.target.value)}placeholder='title, for eg:My lovely apartment'/>
+                    <input className='w-full border my-2 py-2 px-3 rounded-2xl' type='text' value={title} onChange={ev=>setTitle(ev.target.value)}placeholder='title, for eg:Kashmir famous saffron'/>
                     
-                    <h2 className='text-2xl mt-4'>Owner Address</h2>
-                    <p className='text-gray-500 text-sm'>Address to this place.</p>
-                    <input className='w-full border my-2 py-2 px-3 rounded-2xl' type='text'  value={owneraddress} onChange={ev=>setOwnerAddress(ev.target.value)}placeholder='owneraddress'/>
+                    <h2 className='text-2xl mt-4'>Address Of Store</h2>
+                    <p className='text-gray-500 text-sm'>Where is the store located.</p>
+                    <input className='w-full border my-2 py-2 px-3 rounded-2xl' type='text'  value={owneraddress} onChange={ev=>setOwnerAddress(ev.target.value)}placeholder='Srinagar,Jammu & Kashmir'/>
                     
                     <h2 className='text-2xl mt-4'>Photos</h2>
-                    <p className='text-gray-500 text-sm'>more=better</p>
+                    <p className='text-gray-500 text-sm'>Showcase Product</p>
                     <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
                     
                     <h2 className='text-2xl mt-4'>Description</h2>
-                    <p className='text-gray-500 text-sm'>Description of the place</p>
+                    <p className='text-gray-500 text-sm'>Description of the product</p>
                     <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={description} onChange={ev=>setDescription(ev.target.value)}/>
                     
                     <Perks selected={perks} onChange={setPerks}/>
                     
-                    <h2 className='text-2xl mt-4'>Catagory</h2>
-                    <p className='text-gray-500 text-sm'>House rules..etc</p>
-                    <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={catagory} onChange={ev=>setCatagory(ev.target.value)}/>
+                    
+                    <Catagory selected={catagory} onChange={setCatagory}/>
                     
                     <h2 className='text-2xl mt-4'>Stock</h2>
-                    <p className='text-gray-500 text-sm'>Provide stock.</p>
+                    <p className='text-gray-500 text-sm'>Provide stock</p>
                     <div className='grid gap-2 sm:grid-cols-3'>
                         <div className='mt-2 -mb-1'>
                             <h3>Stock</h3>
-                            <input type='number' value={stock} onChange={ev=>setStock(ev.target.value)} placeholder='14:00'/>
+                            <input type='number' value={stock} onChange={ev=>setStock(ev.target.value)} placeholder='1'/>
                         </div>
                         
                         <div className='mt-2 -mb-1'>
