@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useEffect,useState } from "react";
 import axios from "axios";
 import BookingWidget from "../bookingwidget.jsx";
-
+import Deletepage from "../delete.jsx";
 export default function ProductPage(){
     const {id}=useParams();
     const [product,setProduct]=useState(null);
@@ -72,7 +72,7 @@ export default function ProductPage(){
                 </div>
              </div>
         </div>
-        <button onClick={()=>setShowAllPhotos(true)}className=" flex gap-1 bottom-2 right-2 my-2 px-2 py-4 bg-amber-200 hover:bg-amber-400 active:bg-amber-100 rounded-2xl text-primary shadow shadow-md shadow-primary">Show More Photos</button>
+        <button onClick={()=>setShowAllPhotos(true)}className=" flex gap-1 bottom-2  right-2 my-2 px-2 py-4 bg-amber-200 hover:bg-amber-400 active:bg-amber-100 rounded-2xl text-primary shadow shadow-md shadow-primary">Show More Photos</button>
             </div>
             
         <div className="mr-0">
@@ -83,11 +83,12 @@ export default function ProductPage(){
             <div className="grid grid-cols-[2fr_1fr] ">
                  <div><b>Stock: {product.stock}</b><br/>
                  <b>Catagory: {product.catagory}</b>
+                 <b>{product.perks.length>0&&(<ul><li>{product.perks[0]}</li><li>{product.perks[1]}</li><li>{product.perks[2]}</li></ul>)}</b>
                  <div className="mt-2 mb-4 text-sm text-gray-700 leading-8">
-                 <h2 className="font-semibold text-2xl">Price:</h2>
-                    {product.price}
+                 
                     </div>
                    <BookingWidget product={product}/>
+                   
                  </div>
                  
             </div>
