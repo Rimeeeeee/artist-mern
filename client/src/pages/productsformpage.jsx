@@ -13,7 +13,7 @@ export default function ProductsFormPage(){
     const [description,setDescription]=useState('');
     const [perks,setPerks]=useState([]);
     const [catagory,setCatagory]=useState('');
-    const [stock,setStock]=useState('');
+    const [stock,setStock]=useState(0);
     
     const [price,setPrice]=useState(100);
     const[redirect,setRedirect]=useState(false);
@@ -37,7 +37,7 @@ export default function ProductsFormPage(){
     async function addNewProduct(ev){
         ev.preventDefault();
         const productData={
-            title,owneraddress,addedPhotos,description,perks,catagory,price
+            title,owneraddress,addedPhotos,description,perks,catagory,price,stock
         }
         if(id){
             await  axios.put('/products',{id,...productData});
@@ -84,7 +84,7 @@ export default function ProductsFormPage(){
                     <div className='grid gap-2 sm:grid-cols-3'>
                         <div className='mt-2 -mb-1'>
                             <h3>Stock</h3>
-                            <input type='text' value={stock} onChange={ev=>setStock(ev.target.value)} placeholder='14:00'/>
+                            <input type='number' value={stock} onChange={ev=>setStock(ev.target.value)} placeholder='14:00'/>
                         </div>
                         
                         <div className='mt-2 -mb-1'>
