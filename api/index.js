@@ -32,6 +32,8 @@ app.get('/test',(req,res)=>{
 
 app.post('/register',async(req,res)=>{
     const {name,email,password}=req.body;
+    if(!name||!email||!password)
+         res.status(404).send("Provide required information");
     try{
         const userDoc=await User.create({
             name,
@@ -48,6 +50,8 @@ app.post('/register',async(req,res)=>{
 })
 app.post('/login',async(req,res)=>{
     const{email,password}=req.body;
+    if(!email||!password)
+         res.status(404).send("Provide required information");
     const UserDoc=await User.findOne({email});
     if(UserDoc){
         const passOk=bcrypt.compareSync(password,UserDoc.password);
@@ -183,4 +187,11 @@ app.get('/orders',async(req,res)=>{
         res.json(await Order.find({user:id}));
 });
 });
+app.delete('/products/delete/:id',async(req,res)=>{
+   const {id:productid}=req.params;
+   const p=await Product.findOneAndDelete({_id:productid});
+   if(!p)
+      res.status(404).send("No Product With Given Id"+productid);
+       res.status(200).json({p});
+})
 app.listen(4000);
