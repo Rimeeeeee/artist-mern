@@ -2,6 +2,7 @@ import {Link,useParams}from 'react-router-dom';
 import AccountNav from '../accountnav.jsx';
 import { useEffect,useState } from 'react';
 import axios from 'axios';
+import deletepage from '../delete.jsx';
 export default function ProductsPage(){
    const [products,setProducts]=useState([]);
    useEffect(()=>{
@@ -28,16 +29,17 @@ export default function ProductsPage(){
             
             <div className='mt-4 gap-4 h-10 w-1/3 inline-block '>
                 {products.length>0&&products.map(product=>(
-                    <Link to={'/account/products/'+product._id} >
-                        <div className=' border-4 rounded-md border-slate-500 '>
+                    <Link to={'/account/products/'+product._id}>
+                        <div className=' border-4 rounded-md border-slate-700 '>
                             {product.photos.length>0 &&(
                                 <img className='object-cover 'src={'http://localhost:4000/uploads/'+product.photos[0]} alt=""/>
                             )}
                         </div>
                   
                         <h2 className='text-2xl font-bold'>{product.title}</h2>
-                        <p className='text-lg m-4 mt-1 font-semibold'>{product.description}</p>
-                   
+                        <p className='text-lg m-4 mt-1 font-semibold'>&#8377;{product.price}</p>
+                        <p className='text-lg m-4 mt-1 font-semibold'>Stock:{product.stock}</p>
+                         
                     </Link>
                 ))}
             </div>
