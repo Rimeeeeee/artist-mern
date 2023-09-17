@@ -4,6 +4,7 @@ import IndexPage from './pages/indexpage.jsx';
 import LoginPage from './pages/loginpage.jsx';
 import RegisterPage from './pages/registerpage.jsx';
 import AccountPage from './pages/account.jsx';
+import Deletepage from './delete.jsx';
 import Layout from './layout';
 import axios from 'axios';
 import { useEffect } from 'react';
@@ -30,8 +31,9 @@ function App() {
       <Route path="/account/products/new" element={<ProductsFormPage/>}/>
       <Route path="/account/products/:id" element={<ProductsFormPage/>}/>
       <Route path="/products/:id" element={<ProductPage/>}/>
-      <Route path="/account/orders" element={<BuyingPage/>}/>
+      <Route path="/account/orders" element={<OrdersPage/>}/>
       <Route path="/account/orders/:id" element={<OrdersPage/>}/>
+     
         </Route>
       
     </Routes>
