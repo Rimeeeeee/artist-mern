@@ -19,7 +19,7 @@ export default function ProductPage(){
     if(showAllPhotos)
     {
         return(
-          <div className="absolute inset-0 bg-white ">
+          <div className="absolute inset-0 ">
             <div className="p-8 grid gap-4">
                 <div>
                    <h2 className="text-3xl mr-48">Photos Of {product.title}</h2>
