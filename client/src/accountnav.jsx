@@ -13,7 +13,7 @@ export default function AccountNav(){
         return classes;
     }
     return(
-        <nav className="flex justify-center m-2 gap-2">
+        <nav className="flex justify-center m-2 gap-2 nav_bar ">
             <div className="px-2 border-r border-gray-300"><Link className={linkClasses('products')} to={'/'}>Home</Link></div>
             <div className="px-2 border-r border-gray-300"><Link className={linkClasses('profile') } to={'/account'}>My Profile</Link></div> 
            <div className="px-2 border-r border-gray-300"><Link className={linkClasses('orders')} to={'/account/orders'}>My Orders</Link></div>     
