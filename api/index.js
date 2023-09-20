@@ -194,4 +194,14 @@ app.delete('/products/delete/:id',async(req,res)=>{
       res.status(404).send("No Product With Given Id"+productid);
        res.status(200).json({p});
 })
+app.get('/search',async(req,res)=>{
+    const {title,catagory}=req.query;
+    const queryObject={};
+    if(title)
+    queryObject.title=title;
+    if(catagory)
+    queryObject.catagory=catagory;
+    const p1=await Product.find(queryObject);
+    res.status(200).json({p1});
+  })    
 app.listen(4000);
