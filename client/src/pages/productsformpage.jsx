@@ -1,6 +1,6 @@
 import PhotosUploader from "../photosuploader.jsx";
 import Perks from '../perkslabel.jsx';
-import Catagory from "../catagorylabel.jsx";
+import Catagory from "D:/hdd/CODES/Programming/HTML/hackHeritage/artist-mern/client/catagorylabel.jsx";
 import { useState,useEffect } from "react";
 import { Navigate,useParams } from "react-router-dom";
 import axios from "axios";
@@ -101,11 +101,18 @@ export default function ProductsFormPage(){
                         <h3>Price </h3>
                             <input type='number'  value={price} onChange={ev=>setPrice(ev.target.value)} placeholder='100'/>
                         </div>
-                        <h2 className='text-2xl mt-4'>Artist Description</h2>
-                    <p className='text-gray-500 text-sm'>Description of the artist</p>
-                    <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={artistdes} onChange={ev=>setArtistdes(ev.target.value)}/>
+                        <br/>
+                        
+                      
                     
                     </div>
+                    <div className="flex flex-col items-center my-6 justify-center">
+                            
+                        <h2 className='text-2xl mt-4'>Artist Description</h2>
+                    <p className='text-gray-500 text-sm '>Description of the artist</p>
+                    <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={artistdes} onChange={ev=>setArtistdes(ev.target.value)}/>
+                    
+                        </div>
                     <button className="bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-300 px-8 py-2  text-white rounded-full my-6">Save</button>
                 </form>
                 </div>
