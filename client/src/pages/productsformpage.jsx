@@ -15,7 +15,9 @@ export default function ProductsFormPage(){
     const [perks,setPerks]=useState([]);
     const [catagory,setCatagory]=useState('');
     const [stock,setStock]=useState(0);
-    
+    const[history,setHistory]=useState('');
+    const[artistdes,setArtistdes]=useState('');
+    const[district,setDistrict]=useState('');
     const [price,setPrice]=useState(100);
     const[redirect,setRedirect]=useState(false);
     useEffect(()=>{
@@ -31,14 +33,16 @@ export default function ProductsFormPage(){
             setPerks(data.perks);
             setCatagory(data.catagory);
             setStock(data.stock);
-            
+            setArtistdes(data.artistdes);
+            setDistrict(data.district);
+            setHistory(data.history);
             setPrice(data.price);
            })
     },[id]);
     async function addNewProduct(ev){
         ev.preventDefault();
         const productData={
-            title,owneraddress,addedPhotos,description,perks,catagory,price,stock
+            title,owneraddress,addedPhotos,description,perks,catagory,price,stock,district,history,artistdes
         }
         if(id){
             await  axios.put('/products',{id,...productData});
@@ -65,6 +69,9 @@ export default function ProductsFormPage(){
                     <h2 className='text-2xl mt-4'>Address Of Store</h2>
                     <p className='text-gray-500 text-sm'>Where is the store located.</p>
                     <input className='w-full border my-2 py-2 px-3 rounded-2xl' type='text'  value={owneraddress} onChange={ev=>setOwnerAddress(ev.target.value)}placeholder='Srinagar,Jammu & Kashmir'/>
+                    <h2 className='text-2xl mt-4'>District</h2>
+                    <p className='text-gray-500 text-sm'>District Of The product.</p>
+                    <input className='w-full border my-2 py-2 px-3 rounded-2xl' type='text' value={district} onChange={ev=>setDistrict(ev.target.value)}placeholder='District Of The Product'/>
                     
                     <h2 className='text-2xl mt-4'>Photos</h2>
                     <p className='text-gray-500 text-sm'>Showcase Product</p>
@@ -73,6 +80,9 @@ export default function ProductsFormPage(){
                     <h2 className='text-2xl mt-4'>Description</h2>
                     <p className='text-gray-500 text-sm'>Description of the product</p>
                     <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={description} onChange={ev=>setDescription(ev.target.value)}/>
+                    <h2 className='text-2xl mt-4'>History Of Product</h2>
+                    <p className='text-gray-500 text-sm'>The rich cultural association of product</p>
+                    <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={history} onChange={ev=>setHistory(ev.target.value)}/>
                     
                     <Perks selected={perks} onChange={setPerks}/>
                     
@@ -91,6 +101,10 @@ export default function ProductsFormPage(){
                         <h3>Price </h3>
                             <input type='number'  value={price} onChange={ev=>setPrice(ev.target.value)} placeholder='100'/>
                         </div>
+                        <h2 className='text-2xl mt-4'>Artist Description</h2>
+                    <p className='text-gray-500 text-sm'>Description of the artist</p>
+                    <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={artistdes} onChange={ev=>setArtistdes(ev.target.value)}/>
+                    
                     </div>
                     <button className="bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-300 px-8 py-2  text-white rounded-full my-6">Save</button>
                 </form>
