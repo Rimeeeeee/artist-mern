@@ -5,6 +5,7 @@ const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const User=require('./models/User.js');//the schema used in project
 const Product=require('./models/Product.js');
+//const Artist=require('./models/Artist.js');
 const Order=require('./models/Order.js');
 const cookieParser=require('cookie-parser');
 const imageDownloader=require('image-downloader');
@@ -15,7 +16,9 @@ const fs=require('fs');
 require('dotenv').config()
 const app=express();
 const bcryptSalt=bcrypt.genSaltSync(10);
+//const bcryptSalt1=bcrypt.genSaltSync(10);
 const jwtSecret='apidkwbsapidkwbsapidkwbsapidkwbs';
+//const jwtSecret1='apidkwbsapidkwbsapidkwbsapidkwbs1';
 app.use(express.json());
 
 app.use(cookieParser());
@@ -32,14 +35,16 @@ app.get('/test',(req,res)=>{
    
 
 app.post('/register',async(req,res)=>{
-    const {name,email,password}=req.body;
+    const {name,email,password,govno}=req.body;
     if(!name||!email||!password)
          res.status(404).send("Provide required information");
     try{
         const userDoc=await User.create({
             name,
             email,
-            password:bcrypt.hashSync(password,bcryptSalt),
+            govno,
+            password:bcrypt.hashSync(password,bcryptSalt)
+            
         });
         res.json(userDoc);
     }
@@ -49,6 +54,25 @@ app.post('/register',async(req,res)=>{
       }
     
 })
+/*app.post('/register-artist',async(req,res)=>{
+    const {name,email,password,govno}=req.body;
+    if(!name||!email||!password||govno)
+         res.status(404).send("Provide required information");
+    try{
+        const artistDoc=await Artist.create({
+            name,
+            email,
+            password:bcrypt.hashSync(password,bcryptSalt1),
+            govno
+        });
+        res.json(artistDoc);
+    }
+      catch(e)
+      {
+           res.status(422).json(e);
+      }
+    
+})*/
 app.post('/login',async(req,res)=>{
     const{email,password}=req.body;
     if(!email||!password)
@@ -71,13 +95,35 @@ res.status(422).json('pass not ok');
         res.json('not found');
     }
 })
+/*app.post('/login-artist',async(req,res)=>{
+    const{email,password}=req.body;
+    if(!email||!password)
+         res.status(404).send("Provide required information");
+    const ArtistDoc=await Artist.findOne({email});
+    if(ArtistDoc){
+        const passOk=bcrypt.compareSync(password,Artist.password);
+        if(passOk){
+            jwt.sign({email:ArtistDoc.email,id:ArtistDoc._id},jwtSecret1,{},(err,token1)=>{
+                if(err)throw err;
+                res.cookie('token',token1).json(ArtistDoc);
+            });
+
+        
+        }
+        else
+res.status(422).json('pass not ok');
+        }   
+         else{
+        res.json('not found');
+    }
+})*/
 app.get('/profile',(req,res)=>{
     const {token}=req.cookies;
     if(token){
     jwt.verify(token,jwtSecret,{},async(err,userData)=>{
         if(err) throw err;
-       const {name,email,_id}=await  User.findById(userData.id);
-        res.json({name,email,_id});
+       const {name,email,_id,govno}=await  User.findById(userData.id);
+        res.json({name,email,_id,govno});
     })
 
     
@@ -86,9 +132,27 @@ app.get('/profile',(req,res)=>{
     res.json(null);
     
 })
+/*app.get('/profile-artist',(req,res)=>{
+    const {token1}=req.cookies;
+    if(token1){
+    jwt.verify(token1,jwtSecret1,{},async(err,artistData)=>{
+        if(err) throw err;
+       const {name,email,_id,govno}=await  Artist.findById(artistData.id);
+        res.json({name,email,_id,govno});
+    })
+
+    
+}
+    else
+    res.json(null);
+    
+})*/
 app.post('/logout',(req,res)=>{
     res.cookie('token','').json(true);
 })
+/*app.post('/logout-artist',(req,res)=>{
+    res.cookie('token','').json(true);
+})*/
 app.post('/upload-by-link',async(req,res)=>{
     const {link}=req.body;
     const newName='photo'+Date.now()+'.jpg';
@@ -101,6 +165,7 @@ app.post('/upload-by-link',async(req,res)=>{
    
 
 })
+
 const photosMiddleware=multer({dest:'uploads'});
 app.post('/upload',photosMiddleware.array('photos',100),(req,res)=>{
     const uploadedFiles=[];
@@ -117,14 +182,15 @@ app.post('/upload',photosMiddleware.array('photos',100),(req,res)=>{
     }
          res.json(uploadedFiles);
 })
+
 app.post('/products',async(req,res)=>{
     const {token}=req.cookies;
-    const{title,owneraddress,addedPhotos,description,perks,catagory,stock,price,district,artistdes,history}=req.body;
+    const{title,owneraddress,addedPhotos,description,perks,catagory,stock,price,district,artistdes,history,artistauth}=req.body;
     jwt.verify(token,jwtSecret,{},async(err,userData)=>{
         if(err) throw err;
      const productDoc= await Product.create({
                owner:userData.id,
-               title,owneraddress,photos:addedPhotos,description,perks,catagory,stock,price,district,artistdes,history
+               title,owneraddress,photos:addedPhotos,description,perks,catagory,stock,price,district,artistdes,history,artistauth
         })
         res.json(productDoc);
     })
@@ -144,7 +210,7 @@ app.get('/products/:id',async(req,res)=>{
 app.put('/products',async(req,res)=>{
    
     const {token}=req.cookies;
-    const{id,title,owneraddress,addedPhotos,description,perks,catagory,stock,price,district,artistdes,history}=req.body; 
+    const{id,title,owneraddress,addedPhotos,description,perks,catagory,stock,price,district,artistdes,history,artistauth}=req.body; 
     
     jwt.verify(token,jwtSecret,{},async(err,userData)=>{
         if (err) throw err;
@@ -152,7 +218,7 @@ app.put('/products',async(req,res)=>{
         if(userData.id===productDoc.owner.toString()){
            productDoc.set({
             
-               title,owneraddress,photos:addedPhotos,description,perks,catagory,stock,price,district,artistdes,history
+               title,owneraddress,photos:addedPhotos,description,perks,catagory,stock,price,district,artistdes,history,artistauth
            })
            await productDoc.save();
            res.json('ok');
