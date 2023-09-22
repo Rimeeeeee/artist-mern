@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useEffect,useState } from "react";
 import axios from "axios";
 import BookingWidget from "../bookingwidget.jsx";
-
+//import Deletepage from "../delete.jsx";
 export default function ProductPage(){
     const {id}=useParams();
     const [product,setProduct]=useState(null);
@@ -45,7 +45,7 @@ export default function ProductPage(){
             
             <div>
             
-            <a className="flex gap-1 my-3 font-semibold underline"target="_blank" href=''>{product.owneraddress}
+            <a className="flex gap-1 my-3 font-semibold underline"target="_blank" href={'https://maps.google.com/?q='+product.owneraddress}>{product.owneraddress}
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
@@ -72,22 +72,29 @@ export default function ProductPage(){
                 </div>
              </div>
         </div>
-        <button onClick={()=>setShowAllPhotos(true)}className=" flex gap-1 bottom-2 right-2 my-2 px-2 py-4 bg-amber-200 hover:bg-amber-400 active:bg-amber-100 rounded-2xl text-primary shadow shadow-md shadow-primary">Show More Photos</button>
+        <button onClick={()=>setShowAllPhotos(true)}className=" flex gap-1 bottom-2  right-2 my-2 px-2 py-4 bg-amber-200 hover:bg-amber-400 active:bg-amber-100 rounded-2xl text-primary shadow shadow-md shadow-primary">Show More Photos</button>
             </div>
             
         <div className="mr-0">
         <div className="my-4 mr-0">
+        <h2 className="font-semibold text-2xl mr-0 ">District</h2>
+            {product.district}
             <h2 className="font-semibold text-2xl mr-0 ">Description</h2>
             {product.description}
+            <h2 className="font-semibold text-2xl mr-0 ">History</h2>
+            {product.history}
+            <h2 className="font-semibold text-2xl mr-0 ">Artist History</h2>
+            {product.artistdes}
             </div>
             <div className="grid grid-cols-[2fr_1fr] ">
                  <div><b>Stock: {product.stock}</b><br/>
                  <b>Catagory: {product.catagory}</b>
+                 <b>{product.perks.length>0&&(<ul><li>{product.perks[0]}</li><li>{product.perks[1]}</li><li>{product.perks[2]}</li></ul>)}</b>
                  <div className="mt-2 mb-4 text-sm text-gray-700 leading-8">
-                 <h2 className="font-semibold text-2xl">Price:</h2>
-                    {product.price}
+                 
                     </div>
                    <BookingWidget product={product}/>
+                   
                  </div>
                  
             </div>
