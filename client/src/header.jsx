@@ -31,6 +31,8 @@ export default function Header(){
 
 
       </div>
+       
+
       {!!user&&(
         <div>
           {user.name}
