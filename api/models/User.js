@@ -3,7 +3,9 @@ const {Schema}=mongoose;
 const UserSchema=new Schema({
     name:{type:String,required:true},
     email:{type:String,required:true,unique:true},
-    password:{type:String,required:true,unique:true}
+    govno:{type:String,unique:true},
+    password:{type:String,required:true,unique:true},
+    
 });
 const UserModel=mongoose.model('User',UserSchema);
 module.exports=UserModel;
