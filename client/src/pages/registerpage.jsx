@@ -28,7 +28,7 @@ export default function registerpage(){
             <input type="text" className="w-full border my-2 py-2 px-3 rounded-2xl"placeholder='username' value={name} onChange={ev=>setName(ev.target.value)}/>
                 <input type="email" className="w-full border my-2 py-2 px-3 rounded-2xl"placeholder='you@email.com' value={email} onChange={ev=>setEmail(ev.target.value)}/>
                 <input type="password" className="w-full border my-2 py-2 px-3 rounded-2xl"placeholder='password' value={password} onChange={ev=>setPassword(ev.target.value)}/>
-                <button className="bg-primary p-2 w-full text-white rounded-2xl">Register</button>
+                <button className="bg-sky-600 active:bg-blue-400 hover:bg-sky-500 p-2 w-full text-white rounded-2xl">Register</button>
                 <div className='text-center py-2 text-gray-500'>
                     Already an Member?
                     <Link className="underline text-black" to={'/login'}>

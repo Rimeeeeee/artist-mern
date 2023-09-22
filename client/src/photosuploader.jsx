@@ -47,7 +47,7 @@ function uploadPhoto(ev){
         <>
         <div className='flex'>
                         <input className='w-full border my-2 py-2 px-3 rounded-2xl' type='text'  value={photoLink} onChange={ev=>setPhotoLink(ev.target.value)} placeholder={'Add using link.......jpg'}/>
-                        <button onClick={addPhotoByLink} className='bg-primary p-2 w-initial text-white rounded-2xl mx-2'>Add Photos</button>
+                        <button onClick={addPhotoByLink} className='bg-indigo-700 p-2 w-initial text-white rounded-2xl mx-2'>Add Photos</button>
                     </div>
                     
                     <div className='mt-2 grid gap-2 md:grid grid-cols-4 lg:grid-cols-6'>

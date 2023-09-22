@@ -6,8 +6,10 @@ const productSchema=new mongoose.Schema({
     photos:[String],
     description:String,
     perks:[String],
-    catagory:String,
-    
+    catagory:[String],
+    history:String,
+    artistdes:String,
+    district:String,
     stock:Number,
     
     price:Number,

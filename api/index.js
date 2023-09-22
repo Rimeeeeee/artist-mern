@@ -11,6 +11,7 @@ const imageDownloader=require('image-downloader');
 const multer=require('multer');
 const fs=require('fs');
 
+
 require('dotenv').config()
 const app=express();
 const bcryptSalt=bcrypt.genSaltSync(10);
@@ -25,13 +26,15 @@ app.use(cors({
 }));
 mongoose.connect(process.env.MONGO_URL);
 app.get('/test',(req,res)=>{
-    res.json('test ok');
+    res.json('test ok1');
 });
 
    
 
 app.post('/register',async(req,res)=>{
     const {name,email,password}=req.body;
+    if(!name||!email||!password)
+         res.status(404).send("Provide required information");
     try{
         const userDoc=await User.create({
             name,
@@ -48,6 +51,8 @@ app.post('/register',async(req,res)=>{
 })
 app.post('/login',async(req,res)=>{
     const{email,password}=req.body;
+    if(!email||!password)
+         res.status(404).send("Provide required information");
     const UserDoc=await User.findOne({email});
     if(UserDoc){
         const passOk=bcrypt.compareSync(password,UserDoc.password);
@@ -114,12 +119,12 @@ app.post('/upload',photosMiddleware.array('photos',100),(req,res)=>{
 })
 app.post('/products',async(req,res)=>{
     const {token}=req.cookies;
-    const{title,owneraddress,addedPhotos,description,perks,catagory,stock,price}=req.body;
+    const{title,owneraddress,addedPhotos,description,perks,catagory,stock,price,district,artistdes,history}=req.body;
     jwt.verify(token,jwtSecret,{},async(err,userData)=>{
         if(err) throw err;
      const productDoc= await Product.create({
                owner:userData.id,
-               title,owneraddress,photos:addedPhotos,description,perks,catagory,stock,price,
+               title,owneraddress,photos:addedPhotos,description,perks,catagory,stock,price,district,artistdes,history
         })
         res.json(productDoc);
     })
@@ -139,7 +144,7 @@ app.get('/products/:id',async(req,res)=>{
 app.put('/products',async(req,res)=>{
    
     const {token}=req.cookies;
-    const{id,title,owneraddress,addedPhotos,description,perks,catagory,stock,price}=req.body; 
+    const{id,title,owneraddress,addedPhotos,description,perks,catagory,stock,price,district,artistdes,history}=req.body; 
     
     jwt.verify(token,jwtSecret,{},async(err,userData)=>{
         if (err) throw err;
@@ -147,7 +152,7 @@ app.put('/products',async(req,res)=>{
         if(userData.id===productDoc.owner.toString()){
            productDoc.set({
             
-               title,owneraddress,photos:addedPhotos,description,perks,catagory,stock,price,
+               title,owneraddress,photos:addedPhotos,description,perks,catagory,stock,price,district,artistdes,history
            })
            await productDoc.save();
            res.json('ok');
@@ -183,4 +188,22 @@ app.get('/orders',async(req,res)=>{
         res.json(await Order.find({user:id}));
 });
 });
+app.delete('/products/delete/:id',async(req,res)=>{
+   const {id:productid}=req.params;
+   const p=await Product.findOneAndDelete({_id:productid});
+   if(!p)
+      res.status(404).send("No Product With Given Id"+productid);
+       res.status(200).json({p});
+})
+  app.get('/search',async(req,res)=>{
+    const {title,catagory}=req.query;
+    const queryObject={};
+    if(title)
+    queryObject.title=title;
+    if(catagory)
+    queryObject.catagory=catagory;
+    const p1=await Product.find(queryObject);
+    res.status(200).json({p1});
+  })    
 app.listen(4000);
+

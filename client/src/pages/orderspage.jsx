@@ -19,19 +19,20 @@ export default function OrdersPage(){
                 {orders?.length >0 && orders.map(order=>(
                  <>
                  <Link to={'/account/orders/'+order._id}/>
-                  <div className="bg-red-500 text-white p-4 rounded-2xl mt-4 flex-justify-center">
+                  <div className="bg-indigo-500 text-white p-4 rounded-2xl mt-4 mb-10 flex-justify-center">
                     <div className="flex gap-4 bg-gray-300 ">
-                        <PlaceImg place={order.place}/>
+                        
+                    </div>
+                    <div>Order id:{order._id}</div>
+                    <div>
+                    Shipping Address :{order.home_address}  
                     </div>
                     <div>
-                    From :{order.home_address}  
-                    </div>
-                    <div>
-                    To:{order.contact_no}
+                     Contact Number:{order.contact_no}
                     
                     </div>
                     <div>
-                    Total Price:${order.price}
+                    Price:&#8377;{order.price}
                     </div>
                    <div>
                     No.Of Items:{order.items}
@@ -43,4 +44,4 @@ export default function OrdersPage(){
 
         </div>
     );
-}
+                }
