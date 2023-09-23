@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from './UserContext.jsx';
-import AccountNav from './accountnav.jsx';
+import AccountNav1 from './accountnav1.jsx';
 export default function Header(){
   const {user}=useContext(UserContext);
       return(
@@ -12,7 +12,7 @@ export default function Header(){
       </Link>
       
       <div className="flex  gap-2 border border-grey-300 rounded-full py-4 px-4 shadow-md shadow-gray-300">
-        <AccountNav />
+        <AccountNav1 />
         <button className="bg-primary text-white p-1 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
   <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -31,8 +31,6 @@ export default function Header(){
 
 
       </div>
-       
-
       {!!user&&(
         <div>
           {user.name}
