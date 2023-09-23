@@ -1,15 +1,17 @@
 import PhotosUploader from "../photosuploader.jsx";
+
 import Perks from '../perkslabel.jsx';
-import Catagory from "D:/hdd/CODES/Programming/HTML/hackHeritage/artist-mern/client/catagorylabel.jsx";
+import Catagory from "../catagorylabel.jsx";
 import { useState,useEffect } from "react";
 import { Navigate,useParams } from "react-router-dom";
 import axios from "axios";
 import AccountNav from "../accountnav.jsx";
+
 export default function ProductsFormPage(){
     const {id}=useParams();
     const [title,setTitle]=useState('');
     const [owneraddress,setOwnerAddress]=useState('');
-    
+    const[artistauth,setArtistauth]=useState('');
     const [addedPhotos,setAddedPhotos]=useState([]);
     const [description,setDescription]=useState('');
     const [perks,setPerks]=useState([]);
@@ -27,8 +29,9 @@ export default function ProductsFormPage(){
            axios.get('/products/'+id).then(response=>{
             const {data}=response;
             setTitle(data.title);
-            setOwnerAddress(data.owneraddressaddress);
+            setOwnerAddress(data.owneraddress);
             setAddedPhotos(data.photos);
+            setArtistauth(data.artistauth);
             setDescription(data.description);
             setPerks(data.perks);
             setCatagory(data.catagory);
@@ -42,7 +45,7 @@ export default function ProductsFormPage(){
     async function addNewProduct(ev){
         ev.preventDefault();
         const productData={
-            title,owneraddress,addedPhotos,description,perks,catagory,price,stock,district,history,artistdes
+            title,owneraddress,addedPhotos,description,perks,catagory,price,stock,district,history,artistdes,artistauth
         }
         if(id){
             await  axios.put('/products',{id,...productData});
@@ -74,9 +77,12 @@ export default function ProductsFormPage(){
                     <input className='w-full border my-2 py-2 px-3 rounded-2xl' type='text' value={district} onChange={ev=>setDistrict(ev.target.value)}placeholder='District Of The Product'/>
                     
                     <h2 className='text-2xl mt-4'>Photos</h2>
-                    <p className='text-gray-500 text-sm'>Showcase Product</p>
+                    <p className='text-gray-500 text-sm'>Showcase Product(We Encourage Adding Bills And Invoice In Favour Of Authenticity.)</p>
                     <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
                     
+                    <h2 className='text-2xl mt-4'>Provide Authentication Text Proof</h2>
+                    <p className='text-gray-500 text-sm'>Authentify your product</p>
+                    <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={artistauth} onChange={ev=>setArtistauth(ev.target.value)}/>
                     <h2 className='text-2xl mt-4'>Description</h2>
                     <p className='text-gray-500 text-sm'>Description of the product</p>
                     <textarea className='w-full border my-2 py-2 px-3 rounded-2xl'  value={description} onChange={ev=>setDescription(ev.target.value)}/>
