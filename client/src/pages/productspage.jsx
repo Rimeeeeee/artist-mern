@@ -32,7 +32,7 @@ export default function ProductsPage(){
                     <Link to={'/account/products/'+product._id}>
                         <div className=' border-4 rounded-md border-slate-700 '>
                             {product.photos.length>0 &&(
-                                <img className='object-cover 'src={'http://localhost:4000/uploads/'+product.photos[0]} alt=""/>
+                                <img className='object-cover 'src={'http://localhost:4000/uploads/'+product.photos[2]} alt=""/>
                             )}
                         </div>
                   
