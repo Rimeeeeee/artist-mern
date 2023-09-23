@@ -10,8 +10,9 @@ export default function BookingWidget({product}){
     
     const [redirect,setRedirect]=useState('');
     
+    
    async function buyThisProduct(){
-        const response=await axios.post('/orders',{home_address,contact_no,items,place:place._id,price:items*product.price});
+        const response=await axios.post('/orders',{home_address,contact_no,items,product:product._id,price:items*product.price});
         const orderId=response.data._id;
         setRedirect('/account/orders/'+orderId);
     }
@@ -21,7 +22,7 @@ export default function BookingWidget({product}){
     return(
         <div className="my-4 rounded-2xl p-2 text-primary">
         <div className="text-2xl">
-       <b> Price: $ {product.price}</b>
+       <b> Price:  &#8377; {product.price}</b>
        </div>
     
     <div className="my-4 bg-gray-100 text-black">
@@ -41,7 +42,7 @@ export default function BookingWidget({product}){
      <button onClick={buyThisProduct} className="mt-2 p-2 text-white rounded-2xl shadow bg-green-500 hover:bg-green-400 active:bg-green-600">
         Buy This Product
         {items>0 && (
-            <span> For ${items*product.price}</span>
+            <span> For &#8377;{items*product.price}</span>
         )}
         </button>
         </div>
