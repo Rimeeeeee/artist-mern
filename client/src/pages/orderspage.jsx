@@ -1,4 +1,4 @@
-import AccountNav from "../accountnav";
+import AccountNav1 from "../accountnav1";
 import { useEffect,useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -14,7 +14,7 @@ export default function OrdersPage(){
    },[]);
     return(
         <div>
-            <AccountNav/>
+            <AccountNav1/>
             <div>
                 {orders?.length >0 && orders.map(order=>(
                  <>
